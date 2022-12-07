@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %} Посты любимых авторов {% endblock %}
+{% block content %}
+{% load thumbnail %}
+      <div class="container py-5">     
+        <h1> Посты любимых авторов  </h1>
+        {% include 'posts/includes/switcher.html' %}
+        {% if page_obj.paginator.count == 0 %}
+        <h4 align='center'>Подпишитесь на любимых авторов, чтобы видеть избранные посты в ленте</h4>
+        {% endif %} 
+          {% for post in page_obj %} 
+              {% include 'includes/postcard.html' %}  
+            {% if not forloop.last %}<hr>{% endif %}
+          {% endfor %} 
+      {% include 'posts/includes/paginator.html' %}
+      </div>
+
+{% endblock %}   
